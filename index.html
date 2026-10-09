@@ -6,6 +6,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+.book-button {
+    position: fixed; /* Keeps it pinned to the top left even when scrolling */
+    top: 20px;
+    left: 20px;
+    background-color: #fdf5e6; /* Parchment/paper color */
+    color: #5d300d; /* Dark brown text */
+    border: 3px solid #8b4513; /* Leather spine/border */
+    padding: 10px 15px;
+    text-decoration: none;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 10px;
+    box-shadow: 3px 3px 0px #333;
+    z-index: 1000;
+}
+
+.book-button:hover {
+    background-color: #fff8dc;
+    top: 18px; /* Slight lift effect */
+    left: 18px;
+    box-shadow: 4px 4px 0px #333;
+}
+
 
 
         body {
