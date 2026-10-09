@@ -6,11 +6,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-.book-button {
-    position: fixed; /* Keeps it pinned to the top left even when scrolling */
+./* Container to hold the button and menu together */
+.dropdown-container {
+    position: fixed;
     top: 20px;
     left: 20px;
-    background-color: #fdf5e6; /* Parchment/paper color */
+    z-index: 1000;
+}
+
+/* The Book Button */
+.book-button {
+    display: inline-block;
+    background-color: #fdf5e6; /* Parchment color */
     color: #5d300d; /* Dark brown text */
     border: 3px solid #8b4513; /* Leather spine/border */
     padding: 10px 15px;
@@ -18,15 +25,54 @@
     font-family: "Press Start 2P", system-ui;
     font-size: 10px;
     box-shadow: 3px 3px 0px #333;
-    z-index: 1000;
 }
 
 .book-button:hover {
     background-color: #fff8dc;
-    top: 18px; /* Slight lift effect */
-    left: 18px;
+}
+
+/* The hidden drop-down menu box */
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 45px; /* Sits right below the book button */
+    left: 0;
+    background-color: #fdf5e6;
+    min-width: 140px;
+    border: 3px solid #8b4513;
     box-shadow: 4px 4px 0px #333;
 }
+
+/* Links inside the drop-down menu */
+.dropdown-content a {
+    display: block;
+    color: #5d300d;
+    padding: 10px;
+    text-decoration: none;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 8px;
+    text-align: left;
+    margin: 0;
+    border-bottom: 2px dashed #d2b48c; /* Looks like notebook lines */
+}
+
+/* Remove border from the very last item */
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+/* Hover effect for the menu items */
+.dropdown-content a:hover {
+    background-color: #f5deb3;
+    color: #8b4513;
+    text-decoration: none;
+}
+
+/* Reveal the menu when hovering over the container */
+.dropdown-container:hover .dropdown-content {
+    display: block;
+}
+
 
 
 
