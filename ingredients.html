@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fresh Ingredients - Sit By The Fire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Dropdown Menu Styles (Matches Home Page) */
+        .dropdown-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .book-button {
+            display: inline-block;
+            background-color: #fdf5e6;
+            color: #5d300d;
+            border: 3px solid #8b4513;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 10px;
+            box-shadow: 3px 3px 0px #333;
+        }
+
+        .book-button:hover {
+            background-color: #fff8dc;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 45px;
+            left: 0;
+            background-color: #fdf5e6;
+            min-width: 170px;
+            border: 3px solid #8b4513;
+            box-shadow: 4px 4px 0px #333;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: #5d300d;
+            padding: 10px;
+            text-decoration: none;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 8px;
+            text-align: left;
+            margin: 0;
+            border-bottom: 2px dashed #d2b48c;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5deb3;
+            color: #8b4513;
+        }
+
+        .dropdown-container:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Page Layout Styles */
+        body {
+            background-color: #f4f6f9;
+            font-family: "Press Start 2P", system-ui;
+            text-align: center;
+            padding-top: 80px;
+            padding-bottom: 50px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #555555;
+            font-size: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Ingredient Card (Recommendation Log) */
+        .ingredient-card {
+            background-color: #fffaf0;
+            border: 3px solid #8b4513;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 4px 4px 0px #333;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #d2b48c;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 9px;
+        }
+
+        .card-date {
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        .card-category {
+            background-color: #8b4513;
+            color: #f5deb3;
+            padding: 4px 8px;
+            font-size: 7px;
+        }
+
+        .card-title {
+            color: #2c3e50;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            color: #555555;
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+        /* Back home button */
+        .back-btn {
+            display: inline-block;
+            background-color: #8b4513;
+            color: #f5deb3;
+            padding: 12px 20px;
+            margin-top: 30px;
+            text-decoration: none;
+            border: 3px solid #5d300d;
+            font-size: 9px;
+            box-shadow: 3px 3px 0px #333;
+        }
+
+        .back-btn:hover {
+            background-color: #a0522d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dropdown Menu in top left -->
+    <div class="dropdown-container">
+        <a href="#" class="book-button">📖 Book ▼</a>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="ingredients.html">Fresh Ingredients</a>
+        </div>
+    </div>
+
+    <h1>Fresh Ingredients</h1>
+    <p class="subtitle">a ledger of things i am currently tasting, reading, and watching...</p>
+
+    <!-- Recommendation Item 1 (Newest at the top) -->
+    <div class="ingredient-card">
+        <div class="card-header">
+            <span class="card-date">October 8, 2026</span>
+            <span class="card-category">LISTENING</span>
+        </div>
+        <div class="card-title">Cozy Lofi Campfire Beats</div>
+        <div class="card-desc">Been spinning this loop all week while working on code. Perfect background noise for sitting by a digital fire.</div>
+    </div>
+
+    <!-- Recommendation Item 2 -->
+    <div class="ingredient-card">
+        <div class="card-header">
+            <span class="card-date">October 2, 2026</span>
+            <span class="card-category">READING</span>
+        </div>
+        <div class="card-title">The Hobbit by J.R.R. Tolkien</div>
+        <div class="card-desc">Re-reading this classic. There's nothing quite like unexpected journeys and cozy tavern scenes when the weather turns crisp.</div>
+    </div>
+
+    <!-- Back to home -->
+    <a href="index.html" class="back-btn">< Return to Circle</a>
+
+</body>
+</html>
