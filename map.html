@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Overworld Map - Sit By The Fire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Dropdown Menu Styles */
+        .dropdown-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .book-button {
+            display: inline-block;
+            background-color: #fdf5e6;
+            color: #5d300d;
+            border: 3px solid #8b4513;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 10px;
+            box-shadow: 3px 3px 0px #333;
+        }
+
+        .book-button:hover {
+            background-color: #fff8dc;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 45px;
+            left: 0;
+            background-color: #fdf5e6;
+            min-width: 170px;
+            border: 3px solid #8b4513;
+            box-shadow: 4px 4px 0px #333;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: #5d300d;
+            padding: 10px;
+            text-decoration: none;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 8px;
+            text-align: left;
+            margin: 0;
+            border-bottom: 2px dashed #d2b48c;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5deb3;
+            color: #8b4513;
+        }
+
+        .dropdown-container:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Page Layout & Map Theme */
+        body {
+            background-color: #2b1d11;
+            font-family: "Press Start 2P", system-ui;
+            text-align: center;
+            padding-top: 70px;
+            color: #f5deb3;
+        }
+
+        h1 {
+            font-size: 16px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Map Container Frame */
+        .map-chest {
+            background-color: #4a2e18;
+            border: 6px solid #28160a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
+            box-shadow: 6px 6px 0px #110904;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: space-between;
+        }
+
+        /* Left Side: Parchment Map Area */
+        .map-area {
+            flex: 1.3;
+            min-width: 320px;
+            height: 380px;
+            background-color: #fdf5e6; /* Parchment look */
+            border: 3px solid #8b4513;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(139, 69, 19, 0.2);
+            /* Optional: You can set a background map image here later */
+        }
+
+        /* Clickable Map Pins */
+        .map-pin {
+            position: absolute;
+            background-color: #8b4513;
+            color: #fdf5e6;
+            padding: 6px 10px;
+            font-size: 7px;
+            border: 2px solid #5d300d;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #333;
+            text-transform: uppercase;
+            transition: transform 0.1s;
+        }
+
+        .map-pin:hover {
+            background-color: #a0522d;
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        /* Specific pin coordinates on the parchment map */
+        #pin-reno { top: 50%; left: 20%; }
+        #pin-easton { top: 40%; left: 75%; }
+        #pin-lake { top: 25%; left: 65%; }
+        #pin-chicago { top: 60%; left: 50%; }
+
+        /* Right Side: Location Info Inspector */
+        .inspector-panel {
+            flex: 1;
+            min-width: 280px;
+            background-color: #382211;
+            border: 3px solid #28160a;
+            padding: 15px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .inspector-title {
+            font-size: 11px;
+            color: #ffd700;
+            border-bottom: 2px dashed #5a3a21;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .inspector-stats {
+            font-size: 8px;
+            color: #d2b48c;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .inspector-desc {
+            font-size: 8px;
+            color: #f5deb3;
+            line-height: 1.8;
+            background-color: #2b1d11;
+            padding: 10px;
+            border: 2px solid #28160a;
+            flex-grow: 1;
+        }
+
+        /* Back home button */
+        .back-btn {
+            display: inline-block;
+            background-color: #8b4513;
+            color: #f5deb3;
+            padding: 12px 20px;
+            margin-top: 30px;
+            text-decoration: none;
+            border: 3px solid #28160a;
+            font-size: 9px;
+            box-shadow: 3px 3px 0px #110904;
+        }
+
+        .back-btn:hover {
+            background-color: #a0522d;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dropdown Menu in top left -->
+    <div class="dropdown-container">
+        <a href="#" class="book-button">📖 Book ▼</a>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="ingredients.html">Fresh Ingredients</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="map.html">Overworld Map</a>
+        </div>
+    </div>
+
+    <h1>Cartographer's Overworld Map</h1>
+
+    <!-- Map Chest Container -->
+    <div class="map-chest">
+        
+        <!-- Left: Parchment Map with Clickable Pins -->
+        <div class="map-area">
+            <!-- Decorative grid lines or map art placeholder text -->
+            <div style="position: absolute; top: 10px; left: 10px; font-size: 6px; color: #b58863;">[ REGION: WESTERN TRAILS ]</div>
+            
+            <!-- Pin 1: Reno -->
+            <div class="map-pin" id="pin-reno" onclick="inspectLocation('Reno Outpost', 'Region: Nevada\nStatus: Current Camp\nLandmark: Idlewild Park', 'here's where the Stew is being made')">📍 Reno</div>
+
+            <!-- Pin 2: Easton -->
+            <div class="map-pin" id="pin-easton" onclick="inspectLocation('Easton Settlement', 'Region: Pennsylvania\nStatus: Past Outpost\nLandmark: Rivers & Trails', 'i was once a courier here')">📍 Easton</div>
+
+            <!-- Pin 3: Lake Retreat -->
+            <div class="map-pin" id="pin-lake" onclick="inspectLocation('Canandaigua Lake', 'Region: New York\nStatus: Vacation Haven\nLandmark: Lakeside Docks', 'water is here')">📍 Canandaigua</div>
+
+            <!-- Pin 4: Chicago -->
+            <div class="map-pin" id="pin-chicago" onclick="inspectLocation('Logan Square Ward', 'Region: Illinois\nStatus: Previous Territory\nLandmark: City Streets', 'spent years here...')">📍 Chicago</div>
+        </div>
+
+        <!-- Right: Location Inspector Panel -->
+        <div class="inspector-panel">
+            <div>
+                <div class="inspector-title" id="loc-name">Select a Location</div>
+                <div class="inspector-stats" id="loc-stats">Details: ---</div>
+            </div>
+            <div class="inspector-desc" id="loc-desc">
+                Click any waypoint marker on the parchment map to inspect its regional lore, status, and memories here.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Back to home -->
+    <a href="index.html" class="back-btn">< Return to Camp</a>
+
+    <!-- JavaScript to update the inspector panel when a pin is clicked -->
+    <script>
+        function inspectLocation(name, stats, desc) {
+            document.getElementById('loc-name').innerText = name;
+            document.getElementById('loc-stats').innerText = stats;
+            document.getElementById('loc-desc').innerText = desc;
+        }
+    </script>
+
+</body>
+</html>
