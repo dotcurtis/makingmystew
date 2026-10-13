@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory - Sit By The Fire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Dropdown Menu Styles */
+        .dropdown-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .book-button {
+            display: inline-block;
+            background-color: #fdf5e6;
+            color: #5d300d;
+            border: 3px solid #8b4513;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 10px;
+            box-shadow: 3px 3px 0px #333;
+        }
+
+        .book-button:hover {
+            background-color: #fff8dc;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 45px;
+            left: 0;
+            background-color: #fdf5e6;
+            min-width: 170px;
+            border: 3px solid #8b4513;
+            box-shadow: 4px 4px 0px #333;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: #5d300d;
+            padding: 10px;
+            text-decoration: none;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 8px;
+            text-align: left;
+            margin: 0;
+            border-bottom: 2px dashed #d2b48c;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5deb3;
+            color: #8b4513;
+        }
+
+        .dropdown-container:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Page Layout & RPG Inventory Theme */
+        body {
+            background-color: #2b1d11; /* Dark camp night background */
+            font-family: "Press Start 2P", system-ui;
+            text-align: center;
+            padding-top: 70px;
+            color: #f5deb3;
+        }
+
+        h1 {
+            font-size: 16px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Main Inventory Chest Frame */
+        .inventory-chest {
+            background-color: #4a2e18;
+            border: 6px solid #28160a;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 25px;
+            box-shadow: 6px 6px 0px #110904;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        /* Left side: Grid of Item Slots */
+        .grid-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 70px);
+            grid-gap: 10px;
+            justify-content: center;
+            background-color: #382211;
+            padding: 15px;
+            border: 3px solid #28160a;
+        }
+
+        .slot {
+            width: 70px;
+            height: 70px;
+            background-color: #5a3a21;
+            border: 3px solid #28160a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .slot:hover {
+            background-color: #6b4528;
+            border-color: #ffd700;
+        }
+
+        .slot img {
+            max-width: 50px;
+            max-height: 50px;
+            image-rendering: pixelated;
+        }
+
+        /* Right side: Item Inspector / Stat Panel */
+        .inspector-panel {
+            flex: 1;
+            min-width: 280px;
+            background-color: #382211;
+            border: 3px solid #28160a;
+            padding: 15px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .inspector-title {
+            font-size: 11px;
+            color: #ffd700;
+            border-bottom: 2px dashed #5a3a21;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .inspector-stats {
+            font-size: 8px;
+            color: #d2b48c;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .inspector-desc {
+            font-size: 8px;
+            color: #f5deb3;
+            line-height: 1.8;
+            background-color: #2b1d11;
+            padding: 10px;
+            border: 2px solid #28160a;
+            flex-grow: 1;
+        }
+
+        /* Back home button */
+        .back-btn {
+            display: inline-block;
+            background-color: #8b4513;
+            color: #f5deb3;
+            padding: 12px 20px;
+            margin-top: 30px;
+            text-decoration: none;
+            border: 3px solid #28160a;
+            font-size: 9px;
+            box-shadow: 3px 3px 0px #110904;
+        }
+
+        .back-btn:hover {
+            background-color: #a0522d;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dropdown Menu in top left -->
+    <div class="dropdown-container">
+        <a href="#" class="book-button">📖 Book ▼</a>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="ingredients.html">Fresh Ingredients</a>
+            <a href="inventory.html">Inventory</a>
+        </div>
+    </div>
+
+    <h1>Camp Satchel & Gear</h1>
+
+    <!-- Inventory Chest Container -->
+    <div class="inventory-chest">
+        
+        <!-- Left: Grid Slots -->
+        <div class="grid-section">
+            <div class="inventory-grid">
+                <!-- Slot 1: Water Bottle -->
+                <div class="slot" onclick="inspectItem('Hydration Flask', 'Hydration: +50\nDurability: 100/100\nType: Essential Gear', 'Keeps water icy cold even next to a roaring campfire. Never leave camp without it.')">
+                    <span style="font-size: 24px;">🍼</span>
+                </div>
+                <!-- Slot 2: Book -->
+                <div class="slot" onclick="inspectItem('Worn Journal & Tales', 'Wisdom: +30\nComfort: +45\nType: Literature', 'Filled with handwritten notes, sketches, and campfire recipes collected along the trail.')">
+                    <span style="font-size: 24px;">📖</span>
+                </div>
+                <!-- Slot 3: Bag -->
+                <div class="slot" onclick="inspectItem('Canvas Haversack', 'Capacity: 12/20 Slots\nDefense: +5\nType: Storage', 'Sturdy canvas bag weathered by dust, rain, and countless evening travels.')">
+                    <span style="font-size: 24px;">🎒</span>
+                </div>
+                <!-- Slot 4: Empty Slot -->
+                <div class="slot" onclick="inspectItem('Empty Slot', 'Status: Available', 'Ready to hold your next trail find or recommendation.')">
+                    <span style="font-size: 14px; color: #7a5230;">[ ]</span>
+                </div>
+                
+                <!-- Extra empty slots to fill the grid -->
+                <div class="slot" onclick="inspectItem('Empty Slot', 'Status: Available', 'An empty pouch in your satchel.')"><span style="font-size: 14px; color: #7a5230;">[ ]</span></div>
+                <div class="slot" onclick="inspectItem('Empty Slot', 'Status: Available', 'An empty pouch in your satchel.')"><span style="font-size: 14px; color: #7a5230;">[ ]</span></div>
+                <div class="slot" onclick="inspectItem('Empty Slot', 'Status: Available', 'An empty pouch in your satchel.')"><span style="font-size: 14px; color: #7a5230;">[ ]</span></div>
+                <div class="slot" onclick="inspectItem('Empty Slot', 'Status: Available', 'An empty pouch in your satchel.')"><span style="font-size: 14px; color: #7a5230;">[ ]</span></div>
+            </div>
+        </div>
+
+        <!-- Right: Item Inspector Panel -->
+        <div class="inspector-panel">
+            <div>
+                <div class="inspector-title" id="item-name">Select an Item</div>
+                <div class="inspector-stats" id="item-stats">Stats: ---</div>
+            </div>
+            <div class="inspector-desc" id="item-desc">
+                Click any item slot in your satchel to inspect its stats and lore description here.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Back to home -->
+    <a href="index.html" class="back-btn">< Return to Camp</a>
+
+    <!-- Simple JavaScript to make clicking items update the inspector box -->
+    <script>
+        function inspectItem(name, stats, desc) {
+            document.getElementById('item-name').innerText = name;
+            document.getElementById('item-stats').innerText = stats;
+            document.getElementById('item-desc').innerText = desc;
+        }
+    </script>
+
+</body>
+</html>
